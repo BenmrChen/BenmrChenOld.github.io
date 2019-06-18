@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="https://BenmrChen.github.io/index.html">
@@ -13,201 +17,328 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
   
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
-    <link rel="icon" href="/favicon.png">
+
   
-  <link rel="stylesheet" href="/webfonts/ptserif/main.css">
-  <link rel="stylesheet" href="/webfonts/ptserif/source-code-pro.css">
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
   <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+  
+    <link rel="stylesheet" href="/css/home.css">
+  
+
+  
+
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css">
   
 
 </head>
 </html>
-<body>
-  <div id="container">
+
+
+  <body>
+
+
+  
     <header id="header">
-  <div id="header-outer" class="outer">
-    <div id="header-inner" class="inner">
-      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
-      <a id="logo" class="logo" href="/"></a>
-      <nav id="main-nav">
+
+	<!-- 背景图模式 -->
+	
+
+    
+      <div id="intrologo" class="intro-logo" style="background-position:center; background-repeat:no-repeat; background-image: url(); background-size: auto 100%;">
+
+      <!-- Support rolling -->  
         
-          <a class="main-nav-link" href="/">Home</a>
+        <section class="awSlider">
+          <div class="carousel slide carousel-fade " data-ride="carousel">
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+               
+                  
+                    <div class="item active">
+                  
+                    <img id="carousel-img0" src="/css/images/home-bg.jpg">
+                  </div>
+
+                  <!-- 自适应大图 -->
+                  <script>
+                      var img0 = new Image();
+                      var imageTag0 = document.getElementById("carousel-img0");
+                      img0.src = imageTag0.src;
+                      img0.onload=function(){
+                        if (img0.width / img0.height <= document.body.clientWidth / document.body.clientHeight) {
+                          imageTag0.style.width = document.body.clientWidth + "px";
+                        } else {
+                          imageTag0.style.height = document.body.clientHeight + "px";
+                          imageTag0.style.marginLeft = -(document.body.clientHeight * img0.width / img0.height - document.body.clientWidth) / 2 + "px";
+                        }
+                      };
+                  </script>
+                
+                  
+                    <div class="item">
+                  
+                    <img id="carousel-img1" src="/css/images/sample.jpg">
+                  </div>
+
+                  <!-- 自适应大图 -->
+                  <script>
+                      var img1 = new Image();
+                      var imageTag1 = document.getElementById("carousel-img1");
+                      img1.src = imageTag1.src;
+                      img1.onload=function(){
+                        if (img1.width / img1.height <= document.body.clientWidth / document.body.clientHeight) {
+                          imageTag1.style.width = document.body.clientWidth + "px";
+                        } else {
+                          imageTag1.style.height = document.body.clientHeight + "px";
+                          imageTag1.style.marginLeft = -(document.body.clientHeight * img1.width / img1.height - document.body.clientWidth) / 2 + "px";
+                        }
+                      };
+                  </script>
+                
+                  
+                    <div class="item">
+                  
+                    <img id="carousel-img2" src="https://source.unsplash.com/collection/954550/1920x1080">
+                  </div>
+
+                  <!-- 自适应大图 -->
+                  <script>
+                      var img2 = new Image();
+                      var imageTag2 = document.getElementById("carousel-img2");
+                      img2.src = imageTag2.src;
+                      img2.onload=function(){
+                        if (img2.width / img2.height <= document.body.clientWidth / document.body.clientHeight) {
+                          imageTag2.style.width = document.body.clientWidth + "px";
+                        } else {
+                          imageTag2.style.height = document.body.clientHeight + "px";
+                          imageTag2.style.marginLeft = -(document.body.clientHeight * img2.width / img2.height - document.body.clientWidth) / 2 + "px";
+                        }
+                      };
+                  </script>
+                
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href=".carousel" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Geri</span>
+            </a>
+            <a class="right carousel-control" href=".carousel" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">İleri</span>
+            </a>
+          </div>
+        </section>
+        <script>
+          $('section.awSlider .carousel').carousel({
+              pause: '',
+              interval: 5000
+          });
+          var startImage = $('section.awSlider .item.active > img').attr('src');
+          $('section.awSlider .carousel').on('slid.bs.carousel', function () {
+              var bscn = $(this).find('.item.active > img').attr('src');
+              $('section.awSlider > img').attr('src', bscn);
+          });
+        </script>
+      
+
+    
+ 
+
+
+    <canvas width="100%" height="100%"></canvas>
+    <script>
+      var c = document.getElementsByTagName('canvas')[0],
+          x = c.getContext('2d'),
+          w = window.innerWidth,
+          h = window.innerHeight,
+          pr = window.devicePixelRatio || 1,
+          f = 90,
+          q,
+          m = Math,
+          r = 0,
+          u = m.PI*2,
+          v = m.cos,
+          z = m.random
+      c.width = w*pr
+      c.height = h*pr
+      x.scale(pr, pr)
+      x.globalAlpha = 0.6
+
+      <!-- 折线Polyline背景 -->
+      
+    </script>
+    
+
+    
+      <div id="homelogo" class="homelogo" style="background: rgba(255,255,255,1);"> 
+    
+
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <div class="homelogoback"  style="border: 1px solid #404040;" >
+            <h1><a href="#content" id="logo">Hexo</a></h1>
+            <h3></h3>
+            <h5>John Doe</h5>
+            <!-- <p><a href="https://github.com/iTimeTraveler" target="_blank">Github</a></p> -->
+          </div>
         
-          <a class="main-nav-link" href="/categories">Categories</a>
-        
-          <a class="main-nav-link" href="/tags">Tags</a>
-        
-          <a class="main-nav-link" href="/about">About</a>
-        
-          <a class="main-nav-link" href="/atom.xml">Rss</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        <div id="search-form-wrap">
-          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://BenmrChen.github.io"></form>
-        </div>
-      </nav>
+    
     </div>
   </div>
+
+  <!-- 自适应主页背景大图 -->
+  
+
+ <!-- home_logo_image居中 -->
+ 
+    <script>
+        var homelogodiv = document.getElementById("homelogo");
+        if (document.all.homelogo.offsetWidth > document.body.clientWidth) {
+          homelogodiv.style.width = document.body.clientWidth + "px";
+          homelogodiv.style.marginLeft = document.body.clientWidth * -0.5 + "px";
+        } else {
+          homelogodiv.style.width = homelogodiv.clientWidth  + "px";
+          homelogodiv.style.marginLeft = (homelogodiv.clientWidth)  * -0.5 + "px";
+        }
+    </script>
+  
+
+  <div class="intro-navigate">
+      <p class="navigater-list">
+        
+          <a id="beautifont" class="main-nav-link" href="/">Home</a>
+        
+          <a id="beautifont" class="main-nav-link" href="/archives">Archives</a>
+        
+          <a id="beautifont" class="main-nav-link" href="/categories">Categories</a>
+        
+          <a id="beautifont" class="main-nav-link" href="/tags">Tags</a>
+        
+          <a id="beautifont" class="main-nav-link" href="/about">About</a>
+        
+      </p>
+  </div>
+
 </header>
-    <section id="main" class="outer">
-      <article id="post-first-markdown" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+  <div id="container">
+    <div id="wrap">
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;">
+  
+    <article id="post-PayMeChien - Notes"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
     
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/first-markdown/">PayMeChien - Notes</a>
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/PayMeChien - Notes/">PayMeChien - Notes</a>
     </h1>
   
 
       </header>
     
     <div class="article-meta">
-      <a href="/first-markdown/" class="article-date">
-  <time datetime="2019-06-16T13:15:03.000Z" itemprop="datePublished">2019-06-16</time>
-</a>
+      
+	<a href="/PayMeChien - Notes/" class="article-date">
+	  <time datetime="2019-06-16T13:15:03.000Z" itemprop="datePublished">2019-06-16</time>
+	</a>
+
       
       
+      
+
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2>Controller</h2>
-<h4>生成</h4>
-<ul>
-<li>
-<p>使用Artisan</p>
-</li>
-<li>
-<p>e.g.</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:controller UserAuthController</span><br></pre></td></tr></table></figure>
-<p>結果: 產生 <strong>app/Http/Controllers/UserAuthControllr.php</strong> 控制器檔案</p>
-</li>
-</ul>
-<h4>namespace</h4>
-<ul>
-<li>
-<p>用途: 標示本檔案放在什麼資料夾</p>
-</li>
-<li>
-<p>寫法: 用右斜線分開</p>
-</li>
-<li>
-<p>e.g.:</p>
-  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">    <span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>;</span><br><span class="line">    ``` </span><br><span class="line">    </span><br><span class="line">- PS. 注意大小寫</span><br><span class="line">    - 在PhpStorm裡會自動區分大小寫，但EC2不會</span><br><span class="line">    </span><br><span class="line"><span class="comment">#### 方法 (function)</span></span><br><span class="line"><span class="comment">##### 寫法: public function()&#123;&#125;</span></span><br><span class="line">   - e.g.:</span><br><span class="line">        ```php</span><br><span class="line">        <span class="meta">&lt;?php</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">UserAuthController</span> <span class="keyword">extends</span> <span class="title">controller</span> </span>&#123;</span><br><span class="line">          <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">signUpPage</span><span class="params">()</span></span>&#123;</span><br><span class="line">            $binding = [</span><br><span class="line">              <span class="string">'title'</span> =&gt; <span class="string">'註冊'</span></span><br><span class="line">            ];</span><br><span class="line">            <span class="keyword">return</span> view(<span class="string">'auth.signUp'</span>, $binding);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>PS. array的寫法: <code>&quot;中框號&quot; + &quot;key=&gt;value&quot;</code></li>
-<li>PSS. 若要回傳什麼的話就用 <code>return</code></li>
-<li>PSSS. <code>view('auth.signUp', $binding)</code>的意思是要去找<code>resourses/views/auth</code>資料夾裡的<code>signUp.blade.php</code>檔</li>
-</ul>
-</li>
-</ul>
-<h5>常用工具</h5>
-<ul>
-<li>接受輸入資料<br>
-<code>$input = request()-&gt;all;</code></li>
-<li>驗證
-<ol>
-<li>
-<p>建立驗證規則</p>
- <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$rules = [</span><br><span class="line">  <span class="string">'nickname'</span> =&gt; [</span><br><span class="line">      <span class="string">'required'</span>,</span><br><span class="line">      <span class="string">'max:50'</span>,</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">'email'</span> =&gt; [</span><br><span class="line">      <span class="string">'required'</span>,</span><br><span class="line">      <span class="string">'email'</span>,</span><br><span class="line">      <span class="string">'max:50'</span>   </span><br><span class="line">  ],</span><br><span class="line">  <span class="string">'password'</span> =&gt; [</span><br><span class="line">      <span class="string">'required'</span>,</span><br><span class="line">      <span class="string">'same:password_confirmation'</span>  </span><br><span class="line">  ],</span><br><span class="line">  <span class="string">'type'</span> =&gt; [</span><br><span class="line">      <span class="string">'required'</span>,</span><br><span class="line">      <span class="string">'in:G,A'</span>,  </span><br><span class="line">  ],</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-<ul>
-<li>PS. 各個rules 內在指定時要用<code>''</code>給包起來</li>
-<li>PSS. 和指定項相同: <code>same:xxx</code>; <code>'in:G,A'</code>必須是G或A</li>
-<li>More: <a href="https://laravel.tw/docs/5.2/validation#available-validation-rules" target="_blank" rel="noopener">https://laravel.tw/docs/5.2/validation#available-validation-rules</a></li>
-</ul>
-</li>
-<li>
-<p>驗證資料<br>
-<code>$validator = Validator::make($input, $rules);</code></p>
-<ul>
-<li>使用靜態方法呼叫Validator (前題: 需在上面 use Validator;)</li>
-<li>存成物件存在$Validator</li>
-</ul>
- <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>($validator-&gt;fails())&#123;</span><br><span class="line">   <span class="keyword">return</span> redirect(<span class="string">'user/auth/sign-up'</span>)</span><br><span class="line">          -&gt;withErrors($validator)</span><br><span class="line">          -&gt;withInput();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>
-<p>取出驗證失敗的方法: <code>If($validator-&gt;fails())</code></p>
-</li>
-<li>
-<p>把失敗資料帶著傳回去return redirect的目的地址</p>
-<ul>
-<li><code>withErrors($validator)</code></li>
-<li><code>withInput()</code></li>
-</ul>
-</li>
-<li>
-<p>在 blade 顯示 error message</p>
-<ul>
-<li>在 route 裡認到’user/auth/sign-up’後就會轉到 signUp.blade，並帶著 $errors 過去</li>
-<li></li>
-</ul>
- <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">@<span class="keyword">if</span>($errors)</span><br><span class="line">   &lt;ul&gt;</span><br><span class="line">       @<span class="keyword">foreach</span>($errors-&gt;all() <span class="keyword">as</span> $err)</span><br><span class="line">       &lt;li&gt;&#123;&#123; $err &#125;&#125;&lt;/li&gt;</span><br><span class="line">       @<span class="keyword">endforeach</span></span><br><span class="line">   &lt;/ul&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>用 <code>all</code> 的方法來把 <code>$errors</code> 裡面的資料取出來</li>
-<li>取出來之後才能再用<code>foreach</code>來把一筆一筆印出</li>
-<li>以上語法可以存在<code>components</code>資料夾內，並命名為validationErrorMessage.blade</li>
-<li>在主 blade 內就可以用 <code>@include('components.validationErrorMessage')</code> 把它引起來用</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h2>View</h2>
-<h4>@extends: 繼承指定模版</h4>
-<ul>
-<li>e.g. <code>extends('layout.master</code>)</li>
-</ul>
-<h4>@section: 傳值</h4>
-<ul>
-<li>兩種用法
-<ol>
-<li>@section(要傳的片段, 要傳的內容)</li>
-</ol>
-<ul>
-<li>e.g. <code>@section('title',$title)</code></li>
-</ul>
-<ol start="2">
-<li>@section, @endsection: 指定要傳的片段，接著再把要傳的內容包在其中</li>
-</ol>
-<ul>
-<li>e.g.  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">@section(<span class="string">'content'</span>)</span><br><span class="line"> <span class="comment">// What you want to express</span></span><br><span class="line"> abc</span><br><span class="line">@endsection</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
+        <p class="article-excerpt-content">
+          Controller
+生成
 
+
+使用Artisan
+
+
+e.g.
+  1php artisan make:controller UserAuthController
+結果: 產生 app/Http/Controllers/UserAuthController.php 控制器檔案
+
+
+namespace
+
+
+用途: 標示本檔案放在什麼資料夾
+
+
+寫法: 用右斜線分開
+
+
+e.g.:
+  1234567891011121314151617181920    &lt;?php    namesp...
+        </p>
+        <p class="article-more-link">
+          <a href="/PayMeChien - Notes/#more">Read More</a>
+        </p>
       
     </div>
-    
-    
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
   </div>
   
 </article>
 
+<!-- Table of Contents -->
 
 
-
-
-
-
-
-    
-      <article id="post-My-First-Post" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    <article id="post-My-First-Post"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
     
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
+    <h1 class="thumb" itemprop="name">
       <a class="article-title" href="/My-First-Post/">My First Post</a>
     </h1>
   
@@ -215,52 +346,62 @@
       </header>
     
     <div class="article-meta">
-      <a href="/My-First-Post/" class="article-date">
-  <time datetime="2019-03-29T02:51:56.000Z" itemprop="datePublished">2019-03-29</time>
-</a>
+      
+	<a href="/My-First-Post/" class="article-date">
+	  <time datetime="2019-03-29T02:51:56.000Z" itemprop="datePublished">2019-03-29</time>
+	</a>
+
       
       
+      
+
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1>Demo</h1>
-<ul>
-<li>First Title
-<ol>
-<li>5W1H</li>
-</ol>
-</li>
-<li>Second Title
-<ol>
-<li>SOP vs flexibility</li>
-</ol>
-</li>
-</ul>
+        <p class="article-excerpt-content">
+          Demo
 
+First Title
+
+5W1H
+
+
+Second Title
+
+SOP vs flexibility
+
+
+
+
+        </p>
+        <p class="article-more-link">
+          <a href="/My-First-Post/#more">Read More</a>
+        </p>
       
     </div>
-    
-    
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
   </div>
   
 </article>
 
+<!-- Table of Contents -->
 
 
-
-
-
-
-
-    
-      <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    <article id="post-hello-world"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
     
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
+    <h1 class="thumb" itemprop="name">
       <a class="article-title" href="/hello-world/">Hello World</a>
     </h1>
   
@@ -268,64 +409,229 @@
       </header>
     
     <div class="article-meta">
-      <a href="/hello-world/" class="article-date">
-  <time datetime="2019-03-29T02:01:04.936Z" itemprop="datePublished">2019-03-29</time>
-</a>
+      
+	<a href="/hello-world/" class="article-date">
+	  <time datetime="2019-03-29T02:01:04.936Z" itemprop="datePublished">2019-03-29</time>
+	</a>
+
       
       
+      
+
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2>Quick Start</h2>
-<h3>Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3>Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3>Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3>Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        <p class="article-excerpt-content">
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick Start
+Create a new post
+1$ hexo new "My New Po...
+        </p>
+        <p class="article-more-link">
+          <a href="/hello-world/#more">Read More</a>
+        </p>
       
     </div>
-    
-    
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
   </div>
   
 </article>
 
+<!-- Table of Contents -->
 
 
-
-
-
-
-
-    </section>
-    <footer id="footer">
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 John Doe&nbsp;
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/ppoffice">PPOffice</a>
-    </div>
+
+
+</section>
+        
+      </div>
+      
+        <div align="center" style="margin-top: 30px;"><hr class="hr" style="margin:0px; height:3px;"></div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2019 Hexo All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
   </div>
 </footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
     
 
-<script src="/js/jquery.min.js"></script>
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
   <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
+<script src="/js/scripts.js"></script>
+
+
+  <script src="/js/home.js"></script>
+
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
   </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Hexo
+          </div>
+          <div class="panel-body">
+            Copyright © 2019 John Doe All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
 </body>
 </html>
