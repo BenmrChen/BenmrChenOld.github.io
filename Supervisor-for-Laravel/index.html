@@ -103,17 +103,18 @@
 
 
 
-  <meta name="description" content="Hi, nice to meet you.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="https://BenmrChen.github.io/about/index.html">
+  <meta name="description" content="你是否有在 Laravel 使用 Mailgun 寄發網站會員註冊會員 email，卻發現 server 因為要跑寄件流程花費太多時間，進而大大影響了使用者體驗的麻煩呢? 本篇文章就要來分享我如何使用 Supervisor 來解決這個問題。本篇文章內容將涵蓋內容以下: 1. 前言 — 何謂工作延遲處理: Job、Redis、Queue、Supervisor 2. 安裝 Supervisor 及環境">
+<meta name="keywords" content="Web 後端,Laravel,PHP,Supervisor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 Laravel 使用 Supervisor 來優化使用者註冊流程及體驗">
+<meta property="og:url" content="https://BenmrChen.github.io/Supervisor-for-Laravel/index.html">
 <meta property="og:site_name" content="攻城獅的雜食筆記">
-<meta property="og:description" content="Hi, nice to meet you.">
+<meta property="og:description" content="你是否有在 Laravel 使用 Mailgun 寄發網站會員註冊會員 email，卻發現 server 因為要跑寄件流程花費太多時間，進而大大影響了使用者體驗的麻煩呢? 本篇文章就要來分享我如何使用 Supervisor 來解決這個問題。本篇文章內容將涵蓋內容以下: 1. 前言 — 何謂工作延遲處理: Job、Redis、Queue、Supervisor 2. 安裝 Supervisor 及環境">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2019-06-19T18:04:40.951Z">
+<meta property="og:updated_time" content="2019-06-20T06:04:04.057Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="Hi, nice to meet you.">
+<meta name="twitter:title" content="在 Laravel 使用 Supervisor 來優化使用者註冊流程及體驗">
+<meta name="twitter:description" content="你是否有在 Laravel 使用 Mailgun 寄發網站會員註冊會員 email，卻發現 server 因為要跑寄件流程花費太多時間，進而大大影響了使用者體驗的麻煩呢? 本篇文章就要來分享我如何使用 Supervisor 來解決這個問題。本篇文章內容將涵蓋內容以下: 1. 前言 — 何謂工作延遲處理: Job、Redis、Queue、Supervisor 2. 安裝 Supervisor 及環境">
 
 
 
@@ -121,7 +122,7 @@
 
   
   
-  <link rel="canonical" href="https://BenmrChen.github.io/about/">
+  <link rel="canonical" href="https://BenmrChen.github.io/Supervisor-for-Laravel/">
 
 
 
@@ -131,7 +132,7 @@
   };
 </script>
 
-  <title>about | 攻城獅的雜食筆記</title>
+  <title>在 Laravel 使用 Supervisor 來優化使用者註冊流程及體驗 | 攻城獅的雜食筆記</title>
   
 
 
@@ -317,76 +318,227 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://BenmrChen.github.io/Supervisor-for-Laravel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Chen, 陳鳴人">
+      <meta itemprop="description" content="生活離不開工作 工作離不開生活">
+      <meta itemprop="image" content="/images/logo-lion.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="攻城獅的雜食筆記">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">about
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <p>Hi, nice to meet you.</p>
+          <h1 class="post-title" itemprop="name headline">在 Laravel 使用 Supervisor 來優化使用者註冊流程及體驗
 
+              
+            
+          </h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-04 13:58:49" itemprop="dateCreated datePublished" datetime="2019-06-04T13:58:49+08:00">2019-06-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-06-20 14:04:04" itemprop="dateModified" datetime="2019-06-20T14:04:04+08:00">2019-06-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web-後端/" itemprop="url" rel="index"><span itemprop="name">Web 後端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <pre><code>你是否有在 Laravel 使用 Mailgun 寄發網站會員註冊會員 email，卻發現 server 因為要跑寄件流程花費太多時間，進而大大影響了使用者體驗的麻煩呢? 本篇文章就要來分享我如何使用 Supervisor 來解決這個問題。本篇文章內容將涵蓋內容以下:
+1. 前言 — 何謂工作延遲處理: Job、Redis、Queue、Supervisor
+2. 安裝 Supervisor 及環境配置
+3. 確認 Supervisor 是否正常運作
+</code></pre>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/Web-後端/" rel="tag"># Web 後端</a>
+          
+            <a href="/tags/Laravel/" rel="tag"># Laravel</a>
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/Supervisor/" rel="tag"># Supervisor</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/My-First-Post/" rel="next" title="My First Post">
+                <i class="fa fa-chevron-left"></i> My First Post
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Laravel_Note/" rel="prev" title="Laravel-Notes">
+                Laravel-Notes <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -653,6 +805,8 @@
 
   
 
+
+  
 
 
   
