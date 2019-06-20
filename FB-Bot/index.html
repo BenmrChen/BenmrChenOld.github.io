@@ -103,20 +103,18 @@
 
 
 
-  <meta name="description" content="流程  概覽  User 透過 Messenger 傳訊息到 Facebook Server, Facebook Server 會打一個Post Request，把event傳給 Webhook endpoint ，在 Business Server 內邏輯判斷是什麼event並形成request body， 然後將打一個包括request body的Post request給Send API通知">
-<meta name="keywords" content="Web 後端,Bot">
+  <meta name="keywords" content="Web 後端,Bot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用 FB Bot 建立自動回覆機器人">
 <meta property="og:url" content="https://BenmrChen.github.io/FB-Bot/index.html">
 <meta property="og:site_name" content="攻城獅的雜食筆記">
-<meta property="og:description" content="流程  概覽  User 透過 Messenger 傳訊息到 Facebook Server, Facebook Server 會打一個Post Request，把event傳給 Webhook endpoint ，在 Business Server 內邏輯判斷是什麼event並形成request body， 然後將打一個包括request body的Post request給Send API通知">
 <meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://i.imgur.com/7io42F8.png">
 <meta property="og:image" content="https://i.imgur.com/ealbPsI.png">
-<meta property="og:updated_time" content="2019-06-20T06:04:35.121Z">
+<meta property="og:updated_time" content="2019-06-20T17:35:12.207Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用 FB Bot 建立自動回覆機器人">
-<meta name="twitter:description" content="流程  概覽  User 透過 Messenger 傳訊息到 Facebook Server, Facebook Server 會打一個Post Request，把event傳給 Webhook endpoint ，在 Business Server 內邏輯判斷是什麼event並形成request body， 然後將打一個包括request body的Post request給Send API通知">
-<meta name="twitter:image" content="https://i.imgur.com/ealbPsI.png">
+<meta name="twitter:image" content="https://i.imgur.com/7io42F8.png">
 
 
 
@@ -385,12 +383,24 @@
                 
               
 
-              <time title="Created: 2019-06-20 03:00:15 / Modified: 14:04:35" itemprop="dateCreated datePublished" datetime="2019-06-20T03:00:15+08:00">2019-06-20</time>
+              <time title="Created: 2019-06-20 03:00:15" itemprop="dateCreated datePublished" datetime="2019-06-20T03:00:15+08:00">2019-06-20</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-06-21 01:35:12" itemprop="dateModified" datetime="2019-06-21T01:35:12+08:00">2019-06-21</time>
               
             
           </span>
@@ -442,17 +452,19 @@
       
 
       
-        <h1>流程</h1>
+        <p><img src="https://i.imgur.com/7io42F8.png" alt></p>
+<a id="more"></a>
+<h1>流程</h1>
 <ul>
-<li>概覽<br>
+<li>
+<p>概覽<br>
 <img src="https://i.imgur.com/ealbPsI.png" alt><br>
 User 透過 Messenger 傳訊息到 Facebook Server, Facebook Server 會打一個<code>Post Request</code>，把<code>event</code>傳給<br>
 <code>Webhook endpoint</code> ，在 Business Server 內邏輯判斷是什麼<code>event</code>並形成<code>request body</code>，<br>
-然後將打一個包括<code>request body</code>的<code>Post request</code>給<code>Send API</code>通知 Facebook Server 回覆 User</li>
-</ul>
-<a id="more"></a>
-<ul>
-<li>Component
+然後將打一個包括<code>request body</code>的<code>Post request</code>給<code>Send API</code>通知 Facebook Server 回覆 User</p>
+</li>
+<li>
+<p>Component</p>
 <ul>
 <li>PSID(Page-scoped ID): 一個 User 連一個 Messenger Bot 時會被 Messenger Platform 指派一個 PSID，<br>
 這可以確保每個 User 和 Bot 的互動是一對一的關係。</li>
@@ -466,7 +478,8 @@ User 透過 Messenger 傳訊息到 Facebook Server, Facebook Server 會打一個
 並根據其性質來看它是哪哪種<code>webhook event</code>。至少會用到<code>messages</code>和<code>messaging_postbacks</code>這兩種 webhook events</li>
 </ul>
 </li>
-<li>Steps
+<li>
+<p>Steps</p>
 <ol>
 <li>
 <p>Create FanPage</p>
@@ -865,8 +878,6 @@ Send API時使用</li>
                     
                   
                     
-                    
-                      
                     
                       
                     
