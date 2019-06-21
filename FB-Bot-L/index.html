@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw,en,default">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前一篇文章已經說明了Node.js的寫法及認知 這篇在以PHP重寫一次後，是針對兩個部份再做進一步闡述 1. 串接FB Messenger Bot的歷程 2. 以PHP重寫時遇到的問題及解法  前一篇文章請點我">
+<meta name="keywords" content="FB Messenger Bot,Laravel,PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以PHP串接FB Messenger Bot">
+<meta property="og:url" content="https://BenmrChen.github.io/FB-Bot-L/index.html">
+<meta property="og:site_name" content="攻城獅的雜食筆記">
+<meta property="og:description" content="前一篇文章已經說明了Node.js的寫法及認知 這篇在以PHP重寫一次後，是針對兩個部份再做進一步闡述 1. 串接FB Messenger Bot的歷程 2. 以PHP重寫時遇到的問題及解法  前一篇文章請點我">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://i.imgur.com/SYJ7xyN.png">
+<meta property="og:image" content="https://i.imgur.com/3bkiSQj.jpg">
+<meta property="og:image" content="https://i.imgur.com/k7IQkJ0.png">
+<meta property="og:updated_time" content="2019-06-21T15:27:15.351Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="以PHP串接FB Messenger Bot">
+<meta name="twitter:description" content="前一篇文章已經說明了Node.js的寫法及認知 這篇在以PHP重寫一次後，是針對兩個部份再做進一步闡述 1. 串接FB Messenger Bot的歷程 2. 以PHP重寫時遇到的問題及解法  前一篇文章請點我">
+<meta name="twitter:image" content="https://i.imgur.com/SYJ7xyN.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://BenmrChen.github.io/FB-Bot-L/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>以PHP串接FB Messenger Bot | 攻城獅的雜食筆記</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">攻城獅的雜食筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/BenmrChen" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://BenmrChen.github.io/FB-Bot-L/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Chen, 陳鳴人">
+      <meta itemprop="description" content="生活離不開工作 工作離不開生活">
+      <meta itemprop="image" content="/images/logo-lion.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="攻城獅的雜食筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">以PHP串接FB Messenger Bot
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-21 23:16:38 / Modified: 23:27:15" itemprop="dateCreated datePublished" datetime="2019-06-21T23:16:38+08:00">2019-06-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web-後端/" itemprop="url" rel="index"><span itemprop="name">Web 後端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://i.imgur.com/SYJ7xyN.png" alt></p>
+<pre><code>前一篇文章已經說明了Node.js的寫法及認知
+這篇在以PHP重寫一次後，是針對兩個部份再做進一步闡述
+1. 串接FB Messenger Bot的歷程
+2. 以PHP重寫時遇到的問題及解法
+</code></pre>
+<p><a href="https://benmrchen.github.io/FB-Bot/">前一篇文章請點我</a></p>
+<a id="more"></a>
+<h1>[PART 1] 串接FB Messenger Bot歷程</h1>
+<h2>流程全貌</h2>
+<p><img src="https://i.imgur.com/3bkiSQj.jpg" alt></p>
+<h2>歷程</h2>
+<ol>
+<li>FB Messenger BOT 流程/概念</li>
+<li>FB 範例研究
+<ul>
+<li>Node.js</li>
+<li>Linux curl</li>
+</ul>
+</li>
+<li>Deploy
+<ul>
+<li>AWS C9/Heroku: 失敗</li>
+<li>ngrok: 成功</li>
+</ul>
+</li>
+<li>繼續完成.js，確定可以 echo</li>
+<li>回來重整全部流程</li>
+<li>實作 Laravel
+<ul>
+<li>CSRF 檢測-&gt;放到api.php</li>
+<li>取URI、Body的值</li>
+<li>res: 用return response 403</li>
+<li>JSON.stringify(webhook_event): 將object轉成字串</li>
+<li>POSTMAN 打API</li>
+<li>多維陣列</li>
+<li>Complex (curly) syntax</li>
+<li>Guzzle</li>
+</ul>
+</li>
+</ol>
+<h1>[PART 2] 以PHP重寫時遇到的問題及解法</h1>
+<h2>CSRF 檢測問題</h2>
+<ul>
+<li>問題: 由於一開始是直覺地將code寫在web.php裡，沒想到Laravel內default<br>
+會將web.php內的route做CSRF Middleware檢測，以致於會出現類似以下畫面<br>
+<img src="https://i.imgur.com/k7IQkJ0.png" alt></li>
+<li>解法
+<ol>
+<li>Web 端解法: 可以參考<a href="https://laravel.tw/docs/5.0/routing#csrf-protection" target="_blank" rel="noopener">官方文件</a></li>
+<li>POSTMAN 解法: 可以參考<a href="https://ithelp.ithome.com.tw/articles/10208593" target="_blank" rel="noopener">這裡</a><br>
+作法是先正常進入網頁的首頁，在取得<code>token</code>後，放入POSTMAN裡的header (key:X-XSRF-TOKEN; value:<token>)</token></li>
+<li>將code放到<code>api.php</code>裡: 這也是筆者的做法</li>
+</ol>
+</li>
+<li>PS. CSRF (Cross-site request forgery,跨網站請求偽造)保護是Laravel<br>
+提供的一個簡易方法，用來保護網站不受到CSRF攻擊，作法為:<br>
+Laravel 為所有上線使用者的 Session 產生一個 <code>CSRF “token”</code>。該 token 用來驗證使用者為實際發出請求至應用程式的使用者。</li>
+</ul>
+<h2>取Request String、Body的值</h2>
+<ul>
+<li>Request String:
+<ul>
+<li>Eg. <a href="http://newmessengerl.test/api/webhook?hub.verify_token=newMessengerL&amp;hub.challenge=CHALLENGE_ACCEPTED&amp;hub.mode=subscribe11" target="_blank" rel="noopener">http://newmessengerl.test/api/webhook?hub.verify_token=newMessengerL&amp;hub.challenge=CHALLENGE_ACCEPTED&amp;hub.mode=subscribe11</a></li>
+<li>取法: <code>$token = request('hub_verify_token');</code>直接用request並指定key來取value，<br>
+須特別注意<code>.</code>會被解釋成<code>_</code>，在鍵入key時要小心。若要確定實際打入api的request string<br>
+是什麼，可以鍵入<code>dd(request()-&gt;all()</code>來檢查</li>
+</ul>
+</li>
+<li>Body:
+<ul>
+<li>E.g.</li>
+</ul>
+<pre><code>{
+    &quot;object&quot;: &quot;page&quot;,
+    &quot;entry&quot;: [
+        {
+            &quot;messaging&quot;: [
+                {
+                    &quot;sender&quot;: {
+                        &quot;id&quot;: &quot;2205210249526222&quot;
+                    },
+                    &quot;recipient&quot;: {
+                        &quot;id&quot;: &quot;1421661017849456&quot;
+                    },
+                    &quot;timestamp&quot;: 1561096169867,
+                    &quot;message&quot;: {
+                        &quot;mid&quot;: &quot;iLrY0OdHj8QnOstgvefOZMiEYWEsnLoC3bTCQVJLbL9YB6i4Fkycy_tLcptOHcflo0G6oadCpstBOBkKvo52PA&quot;,
+                        &quot;seq&quot;: 0,
+                        &quot;text&quot;: &quot;111&quot;
+                    }
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+<ul>
+<li>
+<p>方法一: 直接使用<code>request()-&gt;input()</code>來取值，取得的會是<code>array</code></p>
+</li>
+<li>
+<p>方法二: 呼叫符合<code>request</code>的變數並使用它來取值，取得的會是<code>object</code></p>
+</li>
+</ul>
+<pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+Route<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/webhook'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>Request <span class="token variable">$request</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token variable">$a</span> <span class="token operator">=</span> <span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">object</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 這邊的$a會是page (string)</span>
+  <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">entry</span> <span class="token keyword">as</span> <span class="token variable">$entry</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token variable">$webhook_event</span> <span class="token operator">=</span> <span class="token variable">$entry</span><span class="token punctuation">[</span><span class="token string">'messaging'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token variable">$sender_psid</span> <span class="token operator">=</span> <span class="token variable">$webhook_event</span><span class="token punctuation">[</span><span class="token string">'sender'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>   
+      <span class="token comment" spellcheck="true">// $webhook_event及$sender_psid是用array來取值(多維陣列取法)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+</ul>
+<h2>JSON.stringify(webhook_event): 將object轉成字串</h2>
+<ul>
+<li>原因: 想要模擬User在FB BOT鍵入訊息時會傳什麼東西給Server, 藉以用POSTMAN來測試API</li>
+<li>解法: 承接上一題 若想要知道在JS value的原JSON string是什麼可以使用<br>
+<code>JSON.stringify(webhook_event)</code>，同時可以用<code>console.log(JSON.stringify(webhook_event));</code><br>
+來印出來在terminal裡 確定JSON格式的內容是什麼後再置入POSTMAN內試打API</li>
+</ul>
+<h2>res: 用return response 403</h2>
+<ul>
+<li><code>return response('',Response::HTTP_FORBIDDEN);</code></li>
+<li><code>return response('', 403);</code></li>
+<li>以上兩者結果相同但前者更readable</li>
+</ul>
+<h2>POSTMAN 打API</h2>
+<ul>
+<li>以以下內容為例(node.js)</li>
+</ul>
+<pre><code>```
+request({
+    &quot;uri&quot;: &quot;https://graph.facebook.com/v2.6/me/messages&quot;,
+    &quot;qs&quot;: { &quot;access_token&quot;: page_access_token },
+    &quot;method&quot;: &quot;POST&quot;,
+    &quot;json&quot;: request_body 
+}); 
+```
+</code></pre>
+<ul>
+<li>須要在POSTMAN 鍵入的內容為:
+<ul>
+<li>uri: 置入URI欄位</li>
+<li>method: 點選正確的method</li>
+<li>qs: <code>Query String</code>，置入<code>Params</code>裡，key為&quot;access_token&quot;, value 為 page_access_token</li>
+<li>‘json’: 置入<code>body</code>，格式選<code>application/json</code>，request_body是上面code寫的變數如下<pre><code>  let request_body = {
+    &quot;recipient&quot;: {
+      &quot;id&quot;: sender_psid
+    },
+    &quot;message&quot;: response
+  }
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Complex (curly) syntax</h2>
+<ul>
+<li>另一種在雙引號內表達變數+字串的表示法</li>
+<li>Eg. 以下兩個<code>text</code>的寫法是一樣的<pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+<span class="token variable">$response</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+<span class="token string">'text'</span><span class="token operator">=</span><span class="token operator">></span><span class="token string">"Test{$webhook_event['message']['text']}"</span><span class="token punctuation">,</span>
+<span class="token string">'text'</span><span class="token operator">=</span><span class="token operator">></span><span class="token string">"Test"</span> <span class="token punctuation">.</span><span class="token variable">$webhook_event</span><span class="token punctuation">[</span><span class="token string">'message'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+<li><a href="https://www.php.net/manual/en/language.types.string.php" target="_blank" rel="noopener">https://www.php.net/manual/en/language.types.string.php</a></li>
+</ul>
+<h2>Guzzle</h2>
+<ul>
+<li>Laravel 用來發<code>Http Request</code>的套件</li>
+<li>表示方式<pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+<span class="token variable">$client</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">post</span><span class="token punctuation">(</span><span class="token variable">$uri</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+        GuzzleHttp\<span class="token package">RequestOptions</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">QUERY</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">[</span><span class="token string">"access_token"</span><span class="token operator">=</span><span class="token operator">></span><span class="token string">"&lt;yourToken>"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        GuzzleHttp\<span class="token package">RequestOptions</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">JSON</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$request_body</span>
+ <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+<li><a href="https://stackoverflow.com/questions/22244738/how-can-i-use-guzzle-to-send-a-post-request-in-json" target="_blank" rel="noopener">https://stackoverflow.com/questions/22244738/how-can-i-use-guzzle-to-send-a-post-request-in-json</a></li>
+<li><a href="https://guzzle.readthedocs.io/en/latest/request-options.html?highlight=json#body" target="_blank" rel="noopener">https://guzzle.readthedocs.io/en/latest/request-options.html?highlight=json#body</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/FB-Messenger-Bot/" rel="tag"># FB Messenger Bot</a>
+          
+            <a href="/tags/Laravel/" rel="tag"># Laravel</a>
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/FB-Bot/" rel="next" title="利用 FB Bot 建立自動回覆機器人">
+                <i class="fa fa-chevron-left"></i> 利用 FB Bot 建立自動回覆機器人
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo-lion.png" alt="Ben Chen, 陳鳴人">
+            
+              <p class="site-author-name" itemprop="name">Ben Chen, 陳鳴人</p>
+              <div class="site-description motion-element" itemprop="description">生活離不開工作 工作離不開生活</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">[PART 1] 串接FB Messenger Bot歷程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text">流程全貌</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.2.</span> <span class="nav-text">歷程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">[PART 2] 以PHP重寫時遇到的問題及解法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.1.</span> <span class="nav-text">CSRF 檢測問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.2.</span> <span class="nav-text">取Request String、Body的值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.3.</span> <span class="nav-text">JSON.stringify(webhook_event): 將object轉成字串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.4.</span> <span class="nav-text">res: 用return response 403</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.5.</span> <span class="nav-text">POSTMAN 打API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.6.</span> <span class="nav-text">Complex (curly) syntax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.7.</span> <span class="nav-text">Guzzle</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Chen, 陳鳴人</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
