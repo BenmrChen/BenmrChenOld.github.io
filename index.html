@@ -399,7 +399,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-07-19 01:49:26" itemprop="dateModified" datetime="2019-07-19T01:49:26+08:00">2019-07-19</time>
+                <time title="Modified: 2019-07-19 14:37:31" itemprop="dateModified" datetime="2019-07-19T14:37:31+08:00">2019-07-19</time>
               
             
           </span>
@@ -452,242 +452,21 @@
 
       
         
+          <p>本篇文章將介紹如何在 AWS 上建立一個 Laravel 專案<br>
+可以分為三大塊</p>
+<pre><code>1. 建立 Instance
+2. SSH 連線至 Server
+3. Server 環境設定
+</code></pre>
+          <!--noindex-->
           
-            <h1>建立 Instance</h1>
-<ul>
-<li>選用AMI
-<ul>
-<li>套件管理工作: Yum</li>
-</ul>
-</li>
-</ul>
-<h1>SSH 連線至 Server</h1>
-<ul>
-<li>聽 80 Port並新增連線
-<ul>
-<li>Dashboard→instance→security group→inbound</li>
-<li><img src="https://i.imgur.com/QgU70xr.png" alt></li>
-</ul>
-</li>
-<li>改根目錄為:
-<ul>
-<li><code>/var/html/&lt;projectName&gt;/public</code>
-<ul>
-<li>Allow Override: All</li>
-<li>因為對外的連接點是public裡的index, 而本機valet因為已經設好了所以不用此設定</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>SSH 連線
-<ul>
-<li>Command Line<pre><code>ssh -i ~/.ssh/mykeypair.pem ec2-user@&lt;yourPublicIP&gt;
-</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-<h1>Server 環境設定</h1>
-<ul>
-<li>安裝PHP<pre><code>sudo yum install php72
-</code></pre>
-</li>
-<li>安裝套件<pre><code>sudo yum install php72-mbstring
-sudo yum install php72-bcmath
-sudo yum install php72-pdo
-sudo yum install php72-mysqlnd
-sudo yum install php72-gd.x86_64
-</code></pre>
-</li>
-<li>Apache 設置
-<ul>
-<li>
-<p>安裝</p>
-<pre><code>sudo yum install httpd24
-</code></pre>
-</li>
-<li>
-<p>啟動</p>
-<pre><code>sudo service httpd start
-</code></pre>
-</li>
-<li>
-<p>設定開機自動重啟</p>
-<pre><code>sudo chkconfig httpd on
-</code></pre>
-</li>
-<li>
-<p>確認Httpd已啟用</p>
-<pre><code>[ec2-user ~]$ chkconfig --list httpd
-httpd           0:off   1:off   2:on    3:on    4:on    5:on    6:off
-</code></pre>
-</li>
-<li>
-<p>安裝 SSL module</p>
-<pre><code>sudo yum install mod24_ssl
-</code></pre>
-</li>
-<li>
-<p>設定檔案許可</p>
-<ul>
-<li><img src="https://i.imgur.com/xS7QhA9.png" alt></li>
-<li>預設在/var/www裡的檔案只給root用 但我們要給es2-user也可以用 所以須要設定 這邊是將 ec2-user 新增至 apache 群組，以向 apache 群組授予 /var/www 目錄的所有權，並指派寫入許可。</li>
-<li>將使用者 ( ec2-user) 新增至 apache 群組: $ sudo usermod -a -G apache ec2-user</li>
-<li>登出並重新登入，以取得新的群組並驗證成員資格。
-<ul>
-<li><code>$ exit</code></li>
-<li><code>$ groups</code></li>
-<li><img src="https://i.imgur.com/RViLZOe.png" alt></li>
-<li>原本是ec2-user wheel, 在變更及exit再重新連接後 會變成 ec2-user wheel apache</li>
-</ul>
-</li>
-<li>將 /var/www 的群組所有權及其內容變更為 apache 群組。
-<ul>
-<li><code>$ sudo chown -R ec2-user:apache /var/www</code></li>
-<li>驗證一下是否成功</li>
-<li><img src="https://i.imgur.com/L4uGPoK.png" alt></li>
-<li>Ref: <a href="http://linux.vbird.org/linux_basic/0220filemanager.php" target="_blank" rel="noopener">http://linux.vbird.org/linux_basic/0220filemanager.php</a>
-<ul>
-<li>可參閱linux 指令，包括<code>find、exec、-p、-t、加到$PATH路徑的作法</code></li>
-</ul>
-</li>
-<li>新增群組寫入許可並在將來的子目錄上設定群組 ID，變更 /var/www 及其子目錄的目錄許可。
-<ul>
-<li>把當下的子資料夾也變成2775的權限<pre><code>sudo chmod 2775 /var/www(
-</code></pre>
-</li>
-<li>把之後加進去的資料夾也變成2775的權限<pre><code>find /var/www -type d -exec sudo chmod 2775 {} \;
-</code></pre>
-</li>
-<li>現在，ec2-user (以及 apache 群組未來的任何成員) 可以新增、刪除和編輯 Apache 文件根目錄中的檔案
-<ul>
-<li>chmod 2775 意義: <a href="https://forums.oscommerce.com/topic/352153-is-chmod-2775-secure/" target="_blank" rel="noopener">https://forums.oscommerce.com/topic/352153-is-chmod-2775-secure/</a>
-<ul>
-<li>The first digit of a 4-character permission (in this case, the “2”) specifies the setuid mode (=4), the setgid mode (=2), and the sticky mode (=1). These values are added together in a manner identical to the read/write/executable permissions above. More information is here.</li>
-<li>簡單來說  第一個2的意思是 在這個資料夾下面的子資料笑也會是有相同的權限  意即775</li>
-</ul>
-</li>
-<li>Find、type、exec 意義: 以find /var/www -type d -exec sudo chmod 2775 {} ;為例，就是去找/var/www這個資料夾裡 type為directory的東西(即資料夾) 然後做額外的動作(-exec) 設權限為2775, 後面的大括號+右斜線是遞迴，意即這個資料夾下面也做一樣的事情(複寫改權限)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>測試LAMP 伺服器</p>
-<ul>
-<li>在 Apache 文件根資料夾中建立 PHP 檔案。<pre><code>$ echo &quot;&lt;?php phpinfo(); ?&gt;&quot; &gt; /var/www/html/phpinfo.php
-</code></pre>
-</li>
-<li>在 browser 輸入 IP + php位址
-<ul>
-<li><a href="http://15.164.49.140/phpinfo.php" target="_blank" rel="noopener">http://15.164.49.140/phpinfo.php</a></li>
-<li>若無畫面 可以檢查套件是否正確安裝
-<ul>
-<li>sudo yum list installed | grep php
-<ul>
-<li>grep後面可以加 php、httpd、mysql等</li>
-<li>AWS 官方:<pre><code>[ec2-user ~]$ sudo yum list installed httpd24 php70 mysql56-server php70-mysqlnd Loaded plugins: priorities, update-motd, upgrade-helper Installed Packages httpd24.x86_64 2.4.25-1.68.amzn1 @amzn-updates mysql56-server.x86_64 5.6.35-1.23.amzn1 @amzn-updates php70.x86_64 7.0.14-1.20.amzn1 @amzn-updates php70-mysqlnd.x86_64 7.0.14-1.20.amzn1 @amzn-updates
-</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>刪除 phpinfo.php 檔案。雖然這可能是有用的資訊，但基於安全因素，不應將其廣播至網際網路。<pre><code></code></pre>
-</li>
-</ul>
-<p>$ rm /var/www/html/phpinfo.php<br>
-```</p>
-</li>
-<li>
-<p>資料庫伺服器</p>
-<ul>
-<li>安裝Mysql<pre><code>$ sudo yum install mysql57-server
-</code></pre>
-</li>
-<li>啟動Mysql<pre><code>$ sudo service mysqld start
-</code></pre>
-</li>
-<li>設定Mysql於reboot時重啟<pre><code>$ sudo chkconfig mysqld on
-</code></pre>
-</li>
-<li>保護資料庫伺服器<pre><code>sudo mysql_secure_installation
-</code></pre>
-</li>
-<li>遠端連線<pre><code> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION;
- FLUSH PRIVILEGES;
-</code></pre>
-<ul>
-<li>第一句是說給all 權限給 root 這個帳號，%代表從哪登入都可 (原來是localhost, 意即只有 remote那台本機) 藉password</li>
-<li>第二句是立刻動作</li>
-<li>Sequel Pro就用public IP (AWS裡的)登入 帳號就是上面寫的 (root) 密碼亦同 (password)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Composer</p>
-<ul>
-<li>安裝composer (可參考官網)<pre><code>php -r &quot;copy('https://getcomposer.org/installer', 'composer-setup.php');&quot;
-php -r &quot;if (hash_file('sha384', 'composer-setup.php') === '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;&quot;
-php composer-setup.php
-php -r &quot;unlink('composer-setup.php');&quot;
-</code></pre>
-</li>
-<li>把composer移到可以全域使用<pre><code>sudo mv composer.phar /usr/local/bin/composer
-</code></pre>
-</li>
-</ul>
-</li>
-<li>
-<p>Git</p>
-<ul>
-<li>安裝<code>sudo yum install -y git</code></li>
-</ul>
-</li>
-<li>
-<p>部署</p>
-<ul>
-<li>Cd 到 /var/www/html資料夾</li>
-<li>Clone 專案</li>
-<li>部署 <code>.env</code> 檔</li>
-<li>以Composer安裝composer.json</li>
-<li>改 Apache 的預設讀取資料夾位置<pre><code></code></pre>
-</li>
-</ul>
-<p>$ sudo vim /etc/httpd/conf/httpd.conf<br>
-```</p>
-<pre><code>  - 裡面要改的內容: 
-      ```
-DocumentRoot &quot;/var/www/html/PayMeChien/public&quot; (這個documentRoot不能不設)
-
-#
-# Relax access to content within /var/www.
-#
-&lt;Directory &quot;/var/www/html/PayMeChien/public&quot;&gt; (這個Directory不能不設, AllowOverride也要改成All)
-    AllowOverride All
-    # Allow open access:
-    Require all granted
-&lt;/Directory&gt;
-  
-      ```
-  - 重啟apache
-      ```
-</code></pre>
-<p>$ sudo service httpd restart<br>
-```</p>
-</li>
-</ul>
-</li>
-</ul>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/AWS-EC2/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>

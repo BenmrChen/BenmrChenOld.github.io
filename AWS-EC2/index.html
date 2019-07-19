@@ -103,22 +103,22 @@
 
 
 
-  <meta name="description" content="建立 Instance  選用AMI  套件管理工作: Yum    SSH 連線至 Server  聽 80 Port並新增連線  Dashboard→instance→security group→inbound    改根目錄為:  /var/html/&amp;lt;projectName&amp;gt;/public  Allow Override: All 因為對外的連接點是public裡的index">
+  <meta name="description" content="本篇文章將介紹如何在 AWS 上建立一個 Laravel 專案 可以分為三大塊 1. 建立 Instance 2. SSH 連線至 Server 3. Server 環境設定">
 <meta name="keywords" content="Laravel,PHP,AWS,EC2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 AWS EC2 上建立 Laravel 專案">
 <meta property="og:url" content="https://BenmrChen.github.io/AWS-EC2/index.html">
 <meta property="og:site_name" content="新手攻城獅的雜食筆記">
-<meta property="og:description" content="建立 Instance  選用AMI  套件管理工作: Yum    SSH 連線至 Server  聽 80 Port並新增連線  Dashboard→instance→security group→inbound    改根目錄為:  /var/html/&amp;lt;projectName&amp;gt;/public  Allow Override: All 因為對外的連接點是public裡的index">
+<meta property="og:description" content="本篇文章將介紹如何在 AWS 上建立一個 Laravel 專案 可以分為三大塊 1. 建立 Instance 2. SSH 連線至 Server 3. Server 環境設定">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://i.imgur.com/QgU70xr.png">
 <meta property="og:image" content="https://i.imgur.com/xS7QhA9.png">
 <meta property="og:image" content="https://i.imgur.com/RViLZOe.png">
 <meta property="og:image" content="https://i.imgur.com/L4uGPoK.png">
-<meta property="og:updated_time" content="2019-07-18T17:49:26.654Z">
+<meta property="og:updated_time" content="2019-07-19T06:37:31.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 AWS EC2 上建立 Laravel 專案">
-<meta name="twitter:description" content="建立 Instance  選用AMI  套件管理工作: Yum    SSH 連線至 Server  聽 80 Port並新增連線  Dashboard→instance→security group→inbound    改根目錄為:  /var/html/&amp;lt;projectName&amp;gt;/public  Allow Override: All 因為對外的連接點是public裡的index">
+<meta name="twitter:description" content="本篇文章將介紹如何在 AWS 上建立一個 Laravel 專案 可以分為三大塊 1. 建立 Instance 2. SSH 連線至 Server 3. Server 環境設定">
 <meta name="twitter:image" content="https://i.imgur.com/QgU70xr.png">
 
 
@@ -405,7 +405,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-07-19 01:49:26" itemprop="dateModified" datetime="2019-07-19T01:49:26+08:00">2019-07-19</time>
+                <time title="Modified: 2019-07-19 14:37:31" itemprop="dateModified" datetime="2019-07-19T14:37:31+08:00">2019-07-19</time>
               
             
           </span>
@@ -457,7 +457,14 @@
       
 
       
-        <h1>建立 Instance</h1>
+        <p>本篇文章將介紹如何在 AWS 上建立一個 Laravel 專案<br>
+可以分為三大塊</p>
+<pre><code>1. 建立 Instance
+2. SSH 連線至 Server
+3. Server 環境設定
+</code></pre>
+<a id="more"></a>
+<h1>建立 Instance</h1>
 <ul>
 <li>選用AMI
 <ul>
